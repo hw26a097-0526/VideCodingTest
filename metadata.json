@@ -1,0 +1,6 @@
+{
+  "name": "Tetris",
+  "description": "A visually stunning, neon-themed Tetris game featuring smooth controls, synthesized retro sound effects, score tracking, hold action, and responsive touch controls for mobile devices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
