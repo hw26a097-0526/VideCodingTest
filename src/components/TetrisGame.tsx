@@ -289,7 +289,7 @@ export default function TetrisGame() {
           setShowTetrisEffect(true);
           setTimeout(() => {
             setShowTetrisEffect(false);
-          }, 1500);
+          }, 1000);
         } else if (linesCount > 0) {
           sound.playLineClear();
         }
@@ -618,10 +618,10 @@ export default function TetrisGame() {
             >
               <Pause className={`${isMobile ? "w-6 h-6 mb-1.5" : "w-10 h-10 mb-3"} text-pink-400 mx-auto drop-shadow-[0_0_10px_rgba(244,114,182,0.5)] animate-pulse`} />
               <h3 className={`${isMobile ? "text-[10px] tracking-wider" : "text-lg lg:text-xl tracking-widest"} font-sans font-black text-slate-100 uppercase mb-1`}>
-                PAUSED
+                一時停止中
               </h3>
               <p className={`${isMobile ? "text-[8px] mb-2" : "text-xs mb-4"} text-slate-400 font-mono`}>
-                Ready to resume?
+                再開しますか？
               </p>
 
               <div className="flex gap-1.5">
@@ -630,14 +630,14 @@ export default function TetrisGame() {
                   onClick={() => setStatus("PLAYING")}
                   className="px-2 py-1 lg:px-4 lg:py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-md font-sans font-bold text-[8px] lg:text-xs uppercase tracking-widest"
                 >
-                  RESUME
+                  再開
                 </button>
                 <button
                   id={`${isMobile ? "mobile-" : ""}restart-paused-btn`}
                   onClick={startGame}
                   className="px-2 py-1 lg:px-4 lg:py-2 bg-slate-800 hover:bg-slate-700 text-slate-350 rounded-md font-sans font-bold text-[8px] lg:text-xs uppercase tracking-widest border border-slate-700"
                 >
-                  RESET
+                  リセット
                 </button>
               </div>
             </motion.div>
@@ -726,7 +726,7 @@ export default function TetrisGame() {
         {/* LEFT COLUMN: Hold Piece */}
         <section id="left-sidebar" className="col-span-3 flex flex-col gap-4 h-full justify-start">
           <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800 p-4 rounded-xl flex flex-col items-center gap-2 shadow-xl">
-            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono">HOLD PIECE</h2>
+            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono">ホールド</h2>
             <div className="flex items-center justify-center p-0.5 bg-slate-950 rounded-lg scale-90">
               {renderMiniGrid((status === "PLAYING" || status === "PAUSED") ? heldPieceType : null, "desktop-hold")}
             </div>
@@ -736,31 +736,31 @@ export default function TetrisGame() {
               disabled={!canHold || status !== "PLAYING"}
               className="mt-1 w-full py-1 px-2 bg-slate-950 border border-slate-800 rounded-md text-[10px] font-mono text-slate-400 hover:bg-slate-800 hover:text-slate-200 disabled:opacity-30 disabled:hover:bg-slate-950 transition-all font-semibold"
             >
-              HOLD (SHIFT)
+              ホールド (SHIFT / C)
             </button>
           </div>
 
           <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800 p-4 rounded-xl shadow-xl">
-            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono mb-2 text-center">KEYBOARD KEYS</h2>
+            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono mb-2 text-center">キーボード操作</h2>
             <div className="space-y-1.5 font-mono text-[9px] text-slate-400">
               <div className="flex justify-between items-center bg-slate-950/60 p-1 px-2 rounded border border-slate-800/40">
-                <span>Move Left</span>
+                <span>左に移動</span>
                 <span className="bg-slate-800 text-white px-1 py-0.5 rounded border border-slate-700">← / A</span>
               </div>
               <div className="flex justify-between items-center bg-slate-950/60 p-1 px-2 rounded border border-slate-800/40">
-                <span>Move Right</span>
+                <span>右に移動</span>
                 <span className="bg-slate-800 text-white px-1 py-0.5 rounded border border-slate-700">→ / D</span>
               </div>
               <div className="flex justify-between items-center bg-slate-950/60 p-1 px-2 rounded border border-slate-800/40">
-                <span>Soft Drop</span>
+                <span>ソフトドロップ</span>
                 <span className="bg-slate-800 text-white px-1 py-0.5 rounded border border-slate-700">↓ / S</span>
               </div>
               <div className="flex justify-between items-center bg-slate-950/60 p-1 px-2 rounded border border-slate-800/40">
-                <span>Rotate CW</span>
+                <span>時計回り回転</span>
                 <span className="bg-slate-800 text-white px-1 py-0.5 rounded border border-slate-700">↑ / W</span>
               </div>
               <div className="flex justify-between items-center bg-slate-950/60 p-1 px-2 rounded border border-slate-800/40">
-                <span>Drop Snap</span>
+                <span>ハードドロップ</span>
                 <span className="bg-slate-800 text-white px-1 py-0.5 rounded border border-slate-700">SPACE</span>
               </div>
             </div>
@@ -777,25 +777,25 @@ export default function TetrisGame() {
         {/* RIGHT COLUMN: Next Piece & Stat Panels */}
         <section id="right-sidebar" className="col-span-3 flex flex-col gap-4 justify-start">
           <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800 p-4 rounded-xl flex flex-col items-center gap-2 shadow-xl">
-            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono">NEXT PIECE</h2>
+            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono">次のミノ</h2>
             <div className="flex items-center justify-center p-0.5 bg-slate-950 rounded-lg scale-90">
               {renderMiniGrid((status === "PLAYING" || status === "PAUSED") ? nextPieceType : null, "desktop-next")}
             </div>
           </div>
 
           <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800 p-4 rounded-xl shadow-xl flex flex-col gap-2">
-            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono text-center border-b border-slate-850 pb-1.5">STATISTICS</h2>
+            <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase font-mono text-center border-b border-slate-850 pb-1.5">プレイ情報</h2>
             <div className="grid grid-cols-1 gap-2 text-xs">
               <div className="bg-slate-950/50 border border-slate-800/40 rounded-lg p-2 flex justify-between items-center font-mono">
-                <span className="text-slate-500 uppercase tracking-widest text-[9px]">SCORE</span>
+                <span className="text-slate-500 uppercase tracking-widest text-[9px]">スコア</span>
                 <span className="font-sans font-black text-indigo-400 text-sm">{score}</span>
               </div>
               <div className="bg-slate-950/50 border border-slate-800/40 rounded-lg p-2 flex justify-between items-center font-mono">
-                <span className="text-slate-500 uppercase tracking-widest text-[9px]">LEVEL</span>
+                <span className="text-slate-500 uppercase tracking-widest text-[9px]">レベル</span>
                 <span className="font-sans font-black text-purple-400 text-sm">{level}</span>
               </div>
               <div className="bg-slate-950/50 border border-slate-800/40 rounded-lg p-2 flex justify-between items-center font-mono">
-                <span className="text-slate-500 uppercase tracking-widest text-[9px]">LINES</span>
+                <span className="text-slate-500 uppercase tracking-widest text-[9px]">ライン数</span>
                 <span className="font-sans font-black text-pink-400 text-sm">{lines}</span>
               </div>
             </div>
@@ -806,14 +806,14 @@ export default function TetrisGame() {
                   onClick={() => setStatus("PAUSED")}
                   className="flex-1 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-[10px] font-mono font-bold tracking-wider uppercase rounded-lg"
                 >
-                  PAUSE
+                  一時停止
                 </button>
               ) : (
                 <button
                   onClick={startGame}
                   className="flex-1 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-mono font-bold tracking-wider uppercase rounded-lg shadow-md"
                 >
-                  PLAY
+                  プレイ
                 </button>
               )}
               <button
@@ -835,7 +835,7 @@ export default function TetrisGame() {
           {/* Left Mini Column */}
           <div className="flex flex-col gap-1.5 items-center w-[75px] shrink-0">
             <div>
-              <span className="text-[9px] font-mono font-bold text-slate-500 tracking-wider">HOLD</span>
+              <span className="text-[9px] font-mono font-bold text-slate-500 tracking-wider">ホールド</span>
             </div>
             <div className="scale-[0.55] sm:scale-[0.65] origin-top h-16 flex items-center justify-center">
               {renderMiniGrid((status === "PLAYING" || status === "PAUSED") ? heldPieceType : null, "mobile-hold")}
@@ -845,11 +845,11 @@ export default function TetrisGame() {
               disabled={!canHold || status !== "PLAYING"}
               className="w-full py-1 mt-1 bg-slate-900 border border-slate-800 text-[8px] font-mono font-bold text-slate-400 uppercase rounded active:bg-slate-800 disabled:opacity-20"
             >
-              SWAP
+              入れ替え
             </button>
             
             <div className="mt-2 bg-slate-900/60 border border-slate-800/40 p-1.5 rounded-lg text-center w-full font-mono">
-              <div className="text-[7px] text-slate-500 font-bold uppercase">SCORE</div>
+              <div className="text-[7px] text-slate-500 font-bold uppercase">スコア</div>
               <div className="text-xs font-black text-indigo-400">{score}</div>
             </div>
           </div>
@@ -862,7 +862,7 @@ export default function TetrisGame() {
           {/* Right Mini Column */}
           <div className="flex flex-col gap-1.5 items-center w-[75px] shrink-0">
             <div>
-              <span className="text-[9px] font-mono font-bold text-slate-500 tracking-wider">NEXT</span>
+              <span className="text-[9px] font-mono font-bold text-slate-500 tracking-wider">次のミノ</span>
             </div>
             <div className="scale-[0.55] sm:scale-[0.65] origin-top h-16 flex items-center justify-center">
               {renderMiniGrid((status === "PLAYING" || status === "PAUSED") ? nextPieceType : null, "mobile-next")}
@@ -870,11 +870,11 @@ export default function TetrisGame() {
 
             <div className="mt-7 bg-slate-900/60 border border-slate-800/40 p-1.5 rounded-lg text-center w-full font-mono space-y-1">
               <div>
-                <div className="text-[7px] text-slate-500 font-bold uppercase font-mono">LVL</div>
+                <div className="text-[7px] text-slate-500 font-bold uppercase font-mono">レベル</div>
                 <div className="text-xs font-bold text-purple-400">{level}</div>
               </div>
               <div className="border-t border-slate-800/45 pt-1">
-                <div className="text-[7px] text-slate-500 font-bold uppercase font-mono">LINES</div>
+                <div className="text-[7px] text-slate-500 font-bold uppercase font-mono">ライン</div>
                 <div className="text-xs font-bold text-pink-400">{lines}</div>
               </div>
             </div>
@@ -888,14 +888,14 @@ export default function TetrisGame() {
               onClick={() => setStatus("PAUSED")}
               className="px-4 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 text-[9px] font-mono rounded-lg active:scale-95 flex items-center gap-1 uppercase"
             >
-              <Pause className="w-3 h-3 text-pink-400" /> PAUSE
+              <Pause className="w-3 h-3 text-pink-400" /> 一時停止
             </button>
           ) : (
             <button
               onClick={startGame}
               className="px-4 py-1.5 bg-indigo-900/40 hover:bg-indigo-900/60 border border-indigo-850 text-indigo-300 text-[9px] font-mono rounded-lg active:scale-95 flex items-center gap-1 uppercase font-bold"
             >
-              <Play className="w-3 h-3 fill-indigo-400 text-indigo-400" /> START
+              <Play className="w-3 h-3 fill-indigo-400 text-indigo-400" /> スタート
             </button>
           )}
           <button
@@ -918,7 +918,7 @@ export default function TetrisGame() {
               onClick={() => moveHorizontal(-1)}
               disabled={status !== "PLAYING"}
               className="w-10 h-10 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg flex items-center justify-center text-slate-200 active:scale-90 active:bg-slate-800 select-none disabled:opacity-20"
-              title="Move Left"
+              title="左に移動"
             >
               <ArrowLeft className="w-5 h-5 text-indigo-400" />
             </button>
@@ -928,7 +928,7 @@ export default function TetrisGame() {
               onClick={softDrop}
               disabled={status !== "PLAYING"}
               className="w-10 h-10 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg flex items-center justify-center text-slate-200 active:scale-90 active:bg-slate-800 select-none disabled:opacity-20"
-              title="Soft Drop"
+              title="ソフトドロップ"
             >
               <ArrowDown className="w-5 h-5 text-indigo-400" />
             </button>
@@ -938,7 +938,7 @@ export default function TetrisGame() {
               onClick={() => moveHorizontal(1)}
               disabled={status !== "PLAYING"}
               className="w-10 h-10 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg flex items-center justify-center text-slate-200 active:scale-90 active:bg-slate-800 select-none disabled:opacity-20"
-              title="Move Right"
+              title="右に移動"
             >
               <ArrowRight className="w-5 h-5 text-indigo-400" />
             </button>
@@ -953,7 +953,7 @@ export default function TetrisGame() {
               className="h-10 bg-slate-950/60 hover:bg-slate-800 border border-slate-800 rounded-lg flex flex-col items-center justify-center text-slate-200 active:scale-90 disabled:opacity-20 select-none"
             >
               <CornerUpLeft className="w-4 h-4 text-purple-400 scale-x-[-1]" />
-              <span className="text-[7px] font-mono font-bold tracking-tight mt-0.5">SPIN</span>
+              <span className="text-[7px] font-mono font-bold tracking-tight mt-0.5">回転</span>
             </button>
             <button
               id="mobile-hard-drop"
@@ -962,7 +962,7 @@ export default function TetrisGame() {
               className="h-10 bg-gradient-to-r from-purple-900/30 to-rose-950/20 border border-purple-800/40 rounded-lg flex flex-col items-center justify-center text-purple-400 active:scale-90 disabled:opacity-20 select-none"
             >
               <Zap className="w-4 h-4 fill-purple-400/20 text-purple-400" />
-              <span className="text-[7px] font-mono font-bold tracking-tight mt-0.5">DROP</span>
+              <span className="text-[7px] font-mono font-bold tracking-tight mt-0.5">落下</span>
             </button>
           </div>
         </div>
@@ -987,39 +987,39 @@ export default function TetrisGame() {
               className="bg-slate-900 border border-slate-800 p-6 rounded-3xl w-full max-w-md shadow-2xl relative"
             >
               <h3 className="font-sans font-black text-lg tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 uppercase mb-4 text-center">
-                HOW TO PLAY
+                ゲームルール / 操作方法
               </h3>
 
               <div className="space-y-4 text-slate-400 text-xs leading-relaxed">
                 <div>
                   <h4 className="font-bold text-slate-200 mb-1 font-mono uppercase text-[11px] tracking-wider text-indigo-300">
-                    THE OBJECTIVE
+                    目的
                   </h4>
                   <p>
-                    Clear full horizontal lines of blocks to score and advance levels. Blocks drop faster as your level increases! Game ends if blocks reach the top.
+                    ブロックで横一列を隙間なく埋めると、その列が消去されてスコアがアップします。レベルが上がるにつれて落下速度が速くなります。ブロックが上端まで積み上がるとゲームオーバーです。
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-slate-200 mb-1 font-mono uppercase text-[11px] tracking-wider text-indigo-300">
-                    SCORING BONUS
+                    スコアボーナス
                   </h4>
                   <ul className="list-disc list-inside space-y-1 font-mono text-[11px]">
-                    <li>Single Line: <span className="text-slate-200">100 × level</span> pts</li>
-                    <li>Double Line: <span className="text-slate-200">300 × level</span> pts</li>
-                    <li>Triple Line: <span className="text-slate-200">500 × level</span> pts</li>
-                    <li>TETRIS (4 Lines!): <span className="text-slate-200 font-bold">800 × level</span> pts</li>
+                    <li>1列消去: <span className="text-slate-200">100 × レベル</span> pts</li>
+                    <li>2列消去: <span className="text-slate-200">300 × レベル</span> pts</li>
+                    <li>3列消去: <span className="text-slate-200">500 × レベル</span> pts</li>
+                    <li>テトリス (4列同時消去!): <span className="text-slate-200 font-bold">800 × レベル</span> pts</li>
                   </ul>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-slate-200 mb-1 font-mono uppercase text-[11px] tracking-wider text-indigo-300">
-                    SPECIAL FEATURES
+                    ゲーム機能
                   </h4>
                   <ul className="list-disc list-inside space-y-1">
-                    <li><span className="text-slate-200 font-semibold font-mono">GHOST PIECE:</span> Dashed outline shows landing coordinates.</li>
-                    <li><span className="text-slate-200 font-semibold font-mono">HOLD TRAY:</span> Save a block for later using the HOLD trigger.</li>
-                    <li><span className="text-slate-200 font-semibold font-mono">WALL KICKS:</span> Allows rotations against obstacles.</li>
+                    <li><span className="text-slate-200 font-semibold font-mono">ゴースト表示:</span> ブロックの着地予測地点が点線で表示されます。</li>
+                    <li><span className="text-slate-250 font-semibold font-mono">ホールド機能:</span> キープしたいブロックをHOLDボタン（またはCキー / Shiftキー）で一時保存できます。</li>
+                    <li><span className="text-slate-250 font-semibold font-mono">壁蹴り:</span> 壁際や障害物の近くでも補正が働き、ブロックを回転させやすくなります。</li>
                   </ul>
                 </div>
               </div>
@@ -1028,7 +1028,7 @@ export default function TetrisGame() {
                 onClick={() => setShowControlsHelp(false)}
                 className="mt-6 w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-mono text-xs font-bold uppercase tracking-widest border border-slate-700 transition-all"
               >
-                CLOSE GUIDE
+                ガイドを閉じる
               </button>
             </motion.div>
           </motion.div>
@@ -1054,29 +1054,29 @@ export default function TetrisGame() {
             {/* Dynamic Radial glow flash */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: [0, 0.6, 0.3, 0.6, 0], scale: [1, 1.2, 1.1, 1.3, 1] }}
-              transition={{ duration: 1.4, ease: "easeInOut" }}
-              className="absolute inset-0 bg-radial from-purple-500/30 via-pink-500/10 to-transparent"
+              animate={{ opacity: [0, 0.4, 0.2, 0.4, 0], scale: [1, 1.15, 1.1, 1.2, 1] }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
+              className="absolute inset-0 bg-radial from-purple-500/20 via-pink-500/5 to-transparent"
             />
 
-            {/* Screen flash pulse (Subtle & Quick) */}
+            {/* Screen flash pulse (Very subtle & instantaneous) */}
             <motion.div
               animate={{
-                backgroundColor: ["rgba(255, 255, 255, 0)", "rgba(168, 85, 247, 0.2)", "rgba(255, 255, 255, 0)"]
+                backgroundColor: ["rgba(255, 255, 255, 0)", "rgba(168, 85, 247, 0.12)", "rgba(255, 255, 255, 0)"]
               }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
               className="absolute inset-0"
             />
 
             {/* Exploding grid blocks particles (Confetti - snap-away) */}
-            {Array.from({ length: 45 }).map((_, i) => {
+            {Array.from({ length: 20 }).map((_, i) => {
               const angle = Math.random() * Math.PI * 2;
-              const distance = 100 + Math.random() * 260;
+              const distance = 80 + Math.random() * 180;
               const tx = Math.cos(angle) * distance;
               const ty = Math.sin(angle) * distance;
               const rColor = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
-              const size = 10 + Math.random() * 14;
-              const rotation = Math.random() * 720 - 360;
+              const size = 8 + Math.random() * 10;
+              const rotation = Math.random() * 540 - 270;
 
               return (
                 <motion.div
@@ -1085,62 +1085,62 @@ export default function TetrisGame() {
                   animate={{
                     x: tx,
                     y: ty,
-                    scale: [0, 1.2, 0.9, 0.3, 0],
+                    scale: [0, 1.1, 0.8, 0.2, 0],
                     rotate: rotation,
-                    opacity: [1, 1, 0.8, 0.3, 0],
+                    opacity: [1, 1, 0.7, 0.2, 0],
                   }}
                   transition={{
-                    duration: 1.0 + Math.random() * 0.4,
+                    duration: 0.7 + Math.random() * 0.3,
                     ease: "easeOut",
                   }}
-                  className="absolute rounded-[3px] border border-white/30 shadow-md"
+                  className="absolute rounded-[2px] border border-white/20 shadow-sm"
                   style={{
                     width: size,
                     height: size,
                     backgroundColor: rColor,
-                    boxShadow: `0 0 12px ${rColor}`,
+                    boxShadow: `0 0 10px ${rColor}`,
                   }}
                 />
               );
             })}
 
-            {/* Big 3D Pulsing Rainbow Neon "TETRIS!" Text (Refined for gameplay visibility) */}
+            {/* Big 3D Pulsing Rainbow Neon "TETRIS!" Text */}
             <motion.div
-              initial={{ scale: 0.2, rotate: -15, y: 30, opacity: 0 }}
+              initial={{ scale: 0.3, rotate: -8, y: 15, opacity: 0 }}
               animate={{
-                scale: [0.2, 1.3, 1, 1.1, 0],
-                rotate: [-15, 8, -4, 0, 12],
-                y: [30, -10, 0, 0, -60],
+                scale: [0.3, 1.15, 1, 1.05, 0],
+                rotate: [-8, 4, -2, 0, 6],
+                y: [15, -5, 0, 0, -35],
                 opacity: [0, 1, 1, 1, 0]
               }}
               transition={{
-                duration: 1.4,
-                times: [0, 0.2, 0.35, 0.8, 1],
+                duration: 0.9,
+                times: [0, 0.18, 0.3, 0.75, 1],
                 ease: "easeInOut"
               }}
               className="relative flex flex-col items-center justify-center select-none"
             >
               {/* Radial glow background around the text */}
-              <div className="absolute -inset-10 bg-gradient-to-r from-red-500/20 via-purple-600/30 to-indigo-500/20 rounded-full blur-[40px] pointer-events-none" />
+              <div className="absolute -inset-6 bg-gradient-to-r from-red-500/10 via-purple-600/15 to-indigo-500/10 rounded-full blur-[25px] pointer-events-none" />
               
-              <h1 className="relative text-5xl md:text-8xl font-sans font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-400 to-indigo-400 drop-shadow-[0_4px_20px_rgba(168,85,247,0.7)] uppercase flex gap-1 md:gap-2">
+              <h1 className="relative text-4xl md:text-7xl font-sans font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-400 to-indigo-400 drop-shadow-[0_2px_12px_rgba(168,85,247,0.5)] uppercase flex gap-1 md:gap-1.5">
                 {["T", "E", "T", "R", "I", "S", "!"].map((char, index) => (
                   <motion.span
                     key={index}
                     animate={{
-                      y: [0, -15, 0],
-                      scale: [1, 1.12, 1],
+                      y: [0, -8, 0],
+                      scale: [1, 1.08, 1],
                       color: ["#ef4444", "#3b82f6", "#10b981", "#eab308", "#a855f7", "#ec4899", "#06b6d4", "#ef4444"][index % 8]
                     }}
                     transition={{
-                      repeat: 2,
-                      duration: 0.4,
-                      delay: index * 0.05,
+                      repeat: 1,
+                      duration: 0.35,
+                      delay: index * 0.04,
                       ease: "easeOut"
                     }}
                     className="inline-block"
                     style={{
-                      textShadow: "0 0 15px rgba(255,255,255,0.8), 0 0 30px currentColor"
+                      textShadow: "0 0 10px rgba(255,255,255,0.7), 0 0 20px currentColor"
                     }}
                   >
                     {char}
@@ -1149,10 +1149,10 @@ export default function TetrisGame() {
               </h1>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: [0, 0.9, 0.9, 0], scale: [0.8, 1.05, 1, 0.9] }}
-                transition={{ delay: 0.2, duration: 1.1 }}
-                className="mt-4 font-mono font-black text-xs md:text-lg tracking-widest text-white bg-slate-950/75 px-4 py-1.5 rounded-full border border-pink-500/50 shadow-[0_0_15px_rgba(244,114,182,0.3)]"
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: [0, 0.9, 0.9, 0], scale: [0.85, 1.02, 1, 0.95] }}
+                transition={{ delay: 0.15, duration: 0.7 }}
+                className="mt-3 font-mono font-black text-[10px] md:text-sm tracking-widest text-white bg-slate-950/70 px-3 py-1 rounded-full border border-pink-500/40 shadow-[0_0_10px_rgba(244,114,182,0.2)]"
               >
                 ✨ PERFECT 4-LINE CLEAR ✨
               </motion.div>
@@ -1161,13 +1161,13 @@ export default function TetrisGame() {
             {/* Screen Shake during Tetris Effect */}
             <style>{`
               #tetris-app-container {
-                animation: ${showTetrisEffect ? "screenShake 0.4s cubic-bezier(.36,.07,.19,.97) both" : "none"};
+                animation: ${showTetrisEffect ? "screenShake 0.25s cubic-bezier(.36,.07,.19,.97) both" : "none"};
               }
               @keyframes screenShake {
-                10%, 90% { transform: translate3d(-1.5px, 0, 0); }
-                20%, 80% { transform: translate3d(2px, 0, 0); }
-                30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-                40%, 60% { transform: translate3d(4px, 0, 0); }
+                10%, 90% { transform: translate3d(-0.8px, 0, 0); }
+                20%, 80% { transform: translate3d(1px, 0, 0); }
+                30%, 50%, 70% { transform: translate3d(-2px, 0, 0); }
+                40%, 60% { transform: translate3d(2px, 0, 0); }
               }
             `}</style>
           </motion.div>
